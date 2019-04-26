@@ -1,6 +1,6 @@
 # Duplicate File Remover
 
-    It is python script which continous scan and detect the duplicate file by considering the checksum of file. Delete all the duplicate file keep exist one copy of each file which can use to free space. It also keep log of delete file which is send to the user through mail.
+It is python script which continous scan and detect the duplicate file by considering the checksum of file. Delete all the duplicate file keep exist one copy of each file which can use to free space. It also keep log of delete file which is send to the user through mail.
 
 ## Feature
 
@@ -11,7 +11,7 @@
 
 ## Usage
 
-        AutoDupRemover Directory_Name  Time_Interval(min)  Sender_Mail_ID
+        $ AutoDupRemover Directory_Name  Time_Interval(min)  Sender_Mail_ID
 
 - AutoDupRemover : Name of python automation script.
 - Directory_Name : Directory which may contains duplicate files.
