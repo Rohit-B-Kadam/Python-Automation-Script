@@ -1,0 +1,10 @@
+--------------------------------------------------------------------------------
+Marvellous Infosystem Duplicate File Remover: Thu Apr 25 19:13:33 2019 
+--------------------------------------------------------------------------------
+
+Duplicate files: 
+1. Deleting Below File as it's copy is present at : Input/Folder1/FILE
+	[deleted] Input/Folder1/C/FILE
+	[deleted] Input/Folder1/B/D/FILE something
+2. Deleting Below File as it's copy is present at : Input/Folder1/C/FILE2
+	[deleted] Input/Folder1/B/D/FILE2
