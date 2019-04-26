@@ -11,9 +11,9 @@ It is python script which continous scan and detect the duplicate file by consid
 
 ## Usage
 
-        $ AutoDupRemover Directory_Name  Time_Interval(min)  Sender_Mail_ID
+        $AutoDupRemover Directory_Name  Time_Interval(min)  Sender_Mail_ID
 
 - AutoDupRemover : Name of python automation script.
 - Directory_Name : Directory which may contains duplicate files.
 - Time_Interval  : Time interval of script in minutes.
-- Sender_Mail_ID : Mail ID of the receiver 
+- Sender_Mail_ID : Mail ID of the receiver.
