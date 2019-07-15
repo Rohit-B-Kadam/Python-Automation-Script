@@ -1,10 +1,11 @@
 # Design automation script which accept directory name from user and create log file in that directory which contains information of running processes as its name, PID, Username.
 
-import psutil
+import psutil   # Get Process Information
 import sys
 import os
 import time
 import smtplib
+import schedule # external
 import urllib.request
 from email import encoders
 from email.mime.text import MIMEText
@@ -74,7 +75,7 @@ def SendMail(SEND_TO , LOG_PATH):
         return
     
     # Mail send data
-    GMAIL_USER = "rohitkadam1407@gmail.com"
+    GMAIL_USER = "14rohitkadam@gmail.com"
     GMAIL_PASSWORD = input(f"Enter password of {GMAIL_USER}: ")
     print(LOG_PATH)
     subject = "Automation Process log Generated "
@@ -116,6 +117,11 @@ def SendMail(SEND_TO , LOG_PATH):
         print(f"Error: Mail is not send.")
         print(e)
 
+# Periodic task
+def StartTask():
+    log_path = ProcessLogger(sys.argv[1])
+    print("Log file is created")
+    SendMail(sys.argv[2], log_path)
 
 def main():
     # Filter of help and usage
@@ -125,24 +131,31 @@ def main():
 
     #Help
     if sys.argv[1] == '-h' or sys.argv[1] == '-H':
-        print("Marvellous_Help: Design automation script which accept directory name from user and create log file in that directory which contains information of running processes as its name, PID, Username.")
+        print("Marvellous_Help: Automation script which accept directory name from user and create log file in that directory which contains information of running processes as its name, PID, Username. Send the email with attached log file")
         exit()
 
     # Usage
     if sys.argv[1] == '-u' or sys.argv[1] == '-U':
-        print(f"Marvellous_Usage: {sys.argv[0]} ProcessName")
+        print(f"Marvellous_Usage: {sys.argv[0]} Directory_Name Sender_Mail_ID Time_Interval(min)")
+        print("Directory_Name : Directory which may contains duplicate files.")
+        print("Time_Interval  : Time interval of script in minutes.")
+        print("Sender_Mail_ID : Mail ID of the receiver.")
         exit()
     
     #Filter for our own program
-    if len(sys.argv) != 3:
+    if len(sys.argv) != 4:
         print("Marvellous_Error: Incorrent Argument")
         exit()
 
     try:
 
-        log_path = ProcessLogger(sys.argv[1])
-        print("Log file is created")
-        SendMail(sys.argv[2], log_path)
+        # schedule at every argv[2] min
+        min = int(sys.argv[2])
+        schedule.every(min).minutes.do(StartTask)
+        
+        while True:
+            schedule.run_pending()
+            time.sleep(1)
 
     except Exception as err:
         print(f"err{err}")

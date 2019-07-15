@@ -5,7 +5,7 @@
 import os
 import requests
 import  urllib.request
-from sys import *
+import sys
 from urllib.parse import urlparse 
 
 def IsDownloadable(url):
@@ -84,7 +84,29 @@ def DownloadFiles(linkFile , directive):
         print("No internet connection")
 
 def main():
-    DownloadFiles("links.txt","Download")
+    # Filter of help and usage
+    if len(sys.argv) < 2:
+        print("FileDownloader_Error: Incorrect Argument")
+        exit()
+
+    #Help
+    if sys.argv[1] == '-h' or sys.argv[1] == '-H':
+        print("FileDownloader_Help: Download all the contents whose link is mention in one file and save in specfic directive.")
+        exit()
+
+    # Usage
+    if sys.argv[1] == '-u' or sys.argv[1] == '-U':
+        print(f"FileDownloader_Usage: {sys.argv[0]}  FileName  DirectiveName")
+        print("FileName: File which content the link of file which must be download")
+        print("DirectiveName: Directive name where all the downloaded file must be same")
+        exit()
+    
+    #Filter for our own program
+    if len(sys.argv) != 3:
+        print("FileDownloader_Error: Incorrect Argument")
+        exit()
+
+    DownloadFiles(sys.argv[1],sys.argv[2])
 
 if __name__ == "__main__":
     main()
